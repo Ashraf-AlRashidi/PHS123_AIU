@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#090d16" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <title>Professionalism (AIU) | البشمهندس أشروووف</title>
+  <link rel="stylesheet" href="styles.css?v=1" />
+  <style>
+    /* حماية ضد كاش متصفح الموبايل على GitHub Pages */
+    .topbar { background: var(--bg-card, #111827); border-bottom: 1px solid rgba(255,255,255,0.09); position: relative; }
+    .topbar-inner { max-width: 960px; margin: 0 auto; padding: 8px 12px; display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: nowrap; }
+    .topbar-brand { display: flex; align-items: center; gap: 6px; min-width: 0; flex: 1 1 auto; overflow: hidden; }
+    .brand-dot { width: 8px; height: 8px; border-radius: 50%; background: #10b981; flex-shrink: 0; }
+    .brand-dev { font-weight: 800; font-size: 0.8rem; color: #f59e0b; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .topbar-end { display: flex; align-items: center; gap: 6px; flex-shrink: 0; }
+    .dua-pill { background: rgba(16,185,129,0.14); color: #10b981; font-size: 0.7rem; font-weight: 700; padding: 3px 8px; border-radius: 999px; white-space: nowrap; }
+    .icon-btn { background: #1a2333; border: 1px solid rgba(255,255,255,0.09); color: #f8fafc; width: 32px; height: 32px; border-radius: 8px; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; flex-shrink: 0; }
+    .desktop-nav { max-width: 960px; margin: 0 auto; padding: 0 12px 8px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+    .main-nav-btn, .part-pill-btn, .sub-tab-btn, .dock-item { font-family: 'Cairo', sans-serif; cursor: pointer; }
+    .main-nav-btn { background: #1a2333; color: #cbd5e1; border: 1px solid rgba(255,255,255,0.09); padding: 7px 10px; border-radius: 8px; font-weight: 700; font-size: 0.85rem; }
+    .main-nav-btn.active, .part-pill-btn.active { background: #10b981 !important; color: #fff !important; border-color: #10b981 !important; }
+    .compact-controls { background: #111827; border: 1px solid rgba(255,255,255,0.09); border-radius: 12px; padding: 8px; margin-bottom: 10px; display: flex; flex-direction: column; gap: 6px; }
+    .parts-bar { display: grid; grid-template-columns: repeat(6, 1fr); gap: 5px; }
+    .part-pill-btn { background: #1a2333; color: #cbd5e1; border: 1px solid rgba(255,255,255,0.09); border-radius: 8px; padding: 6px 4px; font-weight: 800; font-size: 0.76rem; text-align: center; }
+    .sub-tabs-bar { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; background: #090d16; padding: 4px; border-radius: 8px; }
+    .sub-tab-btn { background: transparent; color: #94a3b8; border: none; border-radius: 6px; padding: 6px 4px; font-weight: 700; font-size: 0.77rem; }
+    .sub-tab-btn.active { background: #111827; color: #10b981; }
+    .mobile-dock { display: none; }
+    @media (max-width: 768px) {
+      .desktop-nav, .brand-title, .brand-sep { display: none !important; }
+      .parts-bar { grid-template-columns: repeat(3, 1fr); }
+      .mobile-dock { display: grid !important; grid-template-columns: repeat(4, 1fr); position: fixed; bottom: 0; left: 0; right: 0; z-index: 200; background: #111827; border-top: 1px solid rgba(255,255,255,0.09); padding: 5px 6px; }
+      .dock-item { background: transparent; border: none; color: #94a3b8; padding: 5px 2px; border-radius: 8px; display: flex; flex-direction: column; align-items: center; gap: 1px; }
+      .dock-item.active { color: #10b981; background: rgba(16,185,129,0.14); }
+      .dock-ic { font-size: 1.1rem; }
+      .dock-lbl { font-size: 0.69rem; font-weight: 700; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==================== هيدر مدمج ونظيف جداً (يختفي مع التمرير لأسفل) ==================== -->
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="topbar-brand">
+        <span class="brand-dot"></span>
+        <span class="brand-title">Professionalism</span>
+        <span class="brand-sep">|</span>
+        <span class="brand-dev">👑 البشمهندس أشروووف</span>
+      </div>
+
+      <div class="topbar-end">
+        <span class="dua-pill">أسألكم دعوة حلوة من القلب ❤️</span>
+        <button class="icon-btn" id="themeToggleBtn" onclick="toggleTheme()" title="تبديل المظهر">
+          ☀️
+        </button>
+      </div>
+    </div>
+
+    <!-- شريط التنقل للكمبيوتر فقط -->
+    <nav class="desktop-nav" aria-label="أقسام الموقع">
+      <button class="main-nav-btn active" data-sec="summaries" onclick="switchMainSection('summaries')">📚 التلخيصات والـ 6 محاضرات</button>
+      <button class="main-nav-btn" data-sec="basmaga" onclick="switchMainSection('basmaga')">⚡ بصمجة أشروووف</button>
+      <button class="main-nav-btn" data-sec="exam" onclick="switchMainSection('exam')">📄 بنك الأسئلة الشامل</button>
+      <button class="main-nav-btn" data-sec="simulator" onclick="switchMainSection('simulator')">🎯 اختبر نفسك (محاكي)</button>
+    </nav>
+  </header>
+
+  <!-- ==================== المحتوى الرئيسي ==================== -->
+  <main class="main-wrapper">
+
+    <!-- ==================== 1. قسم التلخيصات والـ 6 محاضرات ==================== -->
+    <section id="sec-summaries" class="section-view active">
+      <div class="compact-controls">
+        <!-- أزرار المحاضرات الـ 6 -->
+        <div id="partsPillsBar" class="parts-bar"></div>
+
+        <!-- التبويبات الـ 3 داخل كل محاضرة -->
+        <div class="sub-tabs-bar" id="partSubTabsBar">
+          <button class="sub-tab-btn active" data-tab="summary" onclick="switchPartSubTab('summary')">📖 التلخيص</button>
+          <button class="sub-tab-btn" data-tab="practice" onclick="switchPartSubTab('practice')">❓ أسئلة الجزء</button>
+          <button class="sub-tab-btn" data-tab="official" onclick="switchPartSubTab('official')">🎯 أسئلة الدكتورة</button>
+        </div>
+      </div>
+
+      <!-- شريط عنوان المحاضرة المختارة + رابط PDF الأصلي -->
+      <div class="active-part-strip">
+        <div class="active-part-left">
+          <span id="activePartBadge" class="part-tag">المحاضرة 1</span>
+          <h1 id="activePartTitle" class="part-heading">Thinking 1 — التفكير والمنطق</h1>
+        </div>
+        <a id="activePartPdfLink" class="pdf-mini-link" href="#" target="_blank">📄 ملف PDF</a>
+      </div>
+
+      <!-- محتوى المحاضرة المختارة -->
+      <div id="activePartContent"></div>
+    </section>
+
+    <!-- ==================== 2. قسم البصمجة 🔥 (BASMAGA) ==================== -->
+    <section id="sec-basmaga" class="section-view">
+      <div class="active-part-strip" style="margin-bottom:12px;">
+        <div class="active-part-left">
+          <span class="part-tag" style="background:rgba(245,158,11,0.18); color:var(--gold);">🔥 كبسولة التقفيل</span>
+          <h1 class="part-heading">قسم البصمجة الذكية — البشمهندس أشروووف</h1>
+        </div>
+      </div>
+
+      <!-- فلاش كاردز البصمجة السريعة -->
+      <div class="glass-panel" style="margin-bottom:14px;">
+        <div class="panel-header">
+          <h3 class="panel-title">🃏 فلاش كاردز البصمجة (اضغط لقلب الكارت)</h3>
+        </div>
+        <div class="flashcard-container">
+          <div id="flashcardBox" class="flashcard-box" onclick="flipFlashcard()"></div>
+          <div style="display:flex; justify-content:center; gap:0.5rem; flex-wrap:wrap;">
+            <button class="btn-primary" onclick="nextFlashcard(-1)">➡️ السابق</button>
+            <button class="btn-gold" onclick="flipFlashcard()">🔄 اقلب</button>
+            <button class="btn-outline" onclick="randomFlashcard()">🎲 عشوائي</button>
+            <button class="btn-primary" onclick="nextFlashcard(1)">التالي ⬅️</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- شفرات البصمجة: أول ما تشوف ... اختار ... -->
+      <div class="glass-panel" style="margin-bottom:14px;">
+        <div class="panel-header" style="flex-wrap:wrap; gap:0.6rem;">
+          <h3 class="panel-title">⚡ شفرات البصمجة (أول ما تشوف ⬅️ اختار فوراً)</h3>
+          <input
+            type="text"
+            id="basmagaSearch"
+            class="search-input"
+            placeholder="🔍 ابحث في شفرات البصمجة (عربي أو English)..."
+            oninput="filterBasmagaTriggers()"
+          />
+        </div>
+        <div id="basmagaTriggersGrid" class="triggers-grid"></div>
+      </div>
+
+      <!-- بصمجة الأرقام والتواريخ والمقارنات الحاكمة -->
+      <div class="glass-panel" style="margin-bottom:14px;">
+        <div class="panel-header">
+          <h3 class="panel-title">🔢 بصمجة كل أرقام وتواريخ المنهج</h3>
+        </div>
+        <div id="basmagaNumbersGrid" class="numbers-grid"></div>
+      </div>
+
+      <!-- فخاخ وتركات صح وغلط -->
+      <div class="glass-panel">
+        <div class="panel-header">
+          <h3 class="panel-title">🚨 فخاخ وتركات أسئلة (True / False) & Except</h3>
+        </div>
+        <div id="basmagaTrapsList"></div>
+      </div>
+    </section>
+
+    <!-- ==================== 3. قسم بنك الأسئلة الشامل والـ PDFs ==================== -->
+    <section id="sec-exam" class="section-view">
+      <div class="active-part-strip" style="margin-bottom:10px;">
+        <div class="active-part-left">
+          <span id="bankCountBadge" class="part-tag">📄 90 سؤال</span>
+          <h1 class="part-heading">بنك الأسئلة الشامل + أسئلة د. إنجي بالحل النموذجي</h1>
+        </div>
+      </div>
+
+      <!-- روابط سريعة لكل ملفات المادة الأصلية -->
+      <div class="pdf-links-strip" id="allPdfsBar"></div>
+
+      <!-- بحث وفلاتر -->
+      <div class="controls-bar">
+        <input
+          type="text"
+          id="pastExamSearch"
+          class="search-input"
+          placeholder="🔍 ابحث في بنك الأسئلة (مثلاً: autonomy, storming, CV, inductive)..."
+          oninput="renderPastExamPaper()"
+        />
+      </div>
+      <div class="filter-chips" id="examFilterChips"></div>
+
+      <div id="pastPaperQuestions"></div>
+    </section>
+
+    <!-- ==================== 4. قسم اختبر نفسك (محاكي الامتحان التفاعلي) ==================== -->
+    <section id="sec-simulator" class="section-view">
+      <div class="glass-panel" style="margin-bottom:14px;">
+        <h2 style="font-size:1.12rem; font-weight:800; margin-bottom:0.4rem; color:var(--gold);">
+          🎯 محاكي الامتحان التفاعلي بالوقت
+        </h2>
+        <p style="font-size:0.86rem; color:var(--text-muted); margin-bottom:0.85rem;">
+          اختبر نفسك في أسئلة MCQ و True/False بالإنجليزي مع تايمر وتصحيح تلقائي فوري وشرح بالعربي لكل سؤال!
+        </p>
+        <div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
+          <button class="btn-gold" onclick="startExamSimulator(20)">⚡ اختبار سريع (20 سؤال)</button>
+          <button class="btn-primary" onclick="startExamSimulator(45)">⏱️ محاكي الامتحان (45 سؤال)</button>
+          <button class="btn-outline" onclick="startExamSimulator(0)">🔥 البنك الشامل (كل الأسئلة)</button>
+          <button class="btn-outline" style="border-color:var(--border-gold); color:var(--gold);" onclick="startExamSimulator(-1)">⭐ أسئلة الدكتورة فقط</button>
+        </div>
+      </div>
+
+      <div id="examSimulatorArea" style="display:none;">
+        <div class="exam-top-bar">
+          <div>
+            <strong style="color:var(--gold); font-size:0.9rem;">👑 لجنة الاختبار</strong>
+            <div id="examProgressText" style="font-size:0.8rem; color:var(--text-muted);"></div>
+          </div>
+          <div id="examTimerDisplay" class="timer-badge">⏱️ 15:00</div>
+          <button class="btn-gold" style="padding:0.4rem 0.85rem; font-size:0.82rem;" onclick="finishExamSimulator()">
+            ✅ تسليم الورقة
+          </button>
+        </div>
+
+        <div id="examCertificateContainer"></div>
+        <div id="simulatorQuestionsList"></div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==================== شريط الموبايل السفلي ==================== -->
+  <nav class="mobile-dock" aria-label="التنقل السريع">
+    <button class="dock-item active" data-sec="summaries" onclick="switchMainSection('summaries')" type="button">
+      <span class="dock-ic">📚</span>
+      <span class="dock-lbl">التلخيصات</span>
+    </button>
+    <button class="dock-item" data-sec="basmaga" onclick="switchMainSection('basmaga')" type="button">
+      <span class="dock-ic">⚡</span>
+      <span class="dock-lbl">البصمجة</span>
+    </button>
+    <button class="dock-item" data-sec="exam" onclick="switchMainSection('exam')" type="button">
+      <span class="dock-ic">📄</span>
+      <span class="dock-lbl">بنك الأسئلة</span>
+    </button>
+    <button class="dock-item" data-sec="simulator" onclick="switchMainSection('simulator')" type="button">
+      <span class="dock-ic">🎯</span>
+      <span class="dock-lbl">اختبر نفسك</span>
+    </button>
+  </nav>
+
+  <script src="data.js?v=1"></script>
+  <script src="app.js?v=1"></script>
+</body>
+</html>

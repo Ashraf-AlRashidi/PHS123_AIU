@@ -1,0 +1,916 @@
+/* ==========================================================================
+   منصة البشمهندس أشروووف - Professionalism (الاحترافية المهنية)
+   تصميم عملي، نظيف، ومُصمم خصيصاً لشاشات الموبايل (Zero-Bloat Mobile-First UI)
+   ========================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@500;600;700;800;900&family=Inter:wght@500;600;700;800&display=swap');
+
+:root {
+  --bg-dark: #090d16;
+  --bg-card: #111827;
+  --bg-card-hover: #1a2333;
+  --border-glass: rgba(255, 255, 255, 0.09);
+  --border-gold: rgba(245, 158, 11, 0.4);
+  --primary: #0ea5e9;
+  --primary-soft: rgba(14, 165, 233, 0.14);
+  --cyan: #38bdf8;
+  --gold: #f59e0b;
+  --gold-light: #fde68a;
+  --emerald: #10b981;
+  --emerald-soft: rgba(16, 185, 129, 0.14);
+  --rose: #ef4444;
+  --violet: #a78bfa;
+  --text-main: #f8fafc;
+  --text-2: #cbd5e1;
+  --text-muted: #94a3b8;
+  --radius-lg: 12px;
+  --radius-md: 10px;
+  --radius-sm: 8px;
+}
+
+body.light-mode {
+  --bg-dark: #f1f5f9;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f8fafc;
+  --border-glass: #e2e8f0;
+  --border-gold: rgba(217, 119, 6, 0.4);
+  --primary: #0284c7;
+  --primary-soft: rgba(2, 132, 199, 0.1);
+  --cyan: #0284c7;
+  --gold: #d97706;
+  --gold-light: #b45309;
+  --emerald: #059669;
+  --emerald-soft: rgba(5, 150, 105, 0.1);
+  --rose: #dc2626;
+  --violet: #7c3aed;
+  --text-main: #0f172a;
+  --text-2: #334155;
+  --text-muted: #64748b;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: 'Cairo', 'Inter', system-ui, -apple-system, sans-serif;
+  background-color: var(--bg-dark);
+  background-image: none !important;
+  color: var(--text-main);
+  line-height: 1.65;
+  min-height: 100vh;
+  padding-bottom: 76px;
+  direction: rtl;
+  text-align: right;
+}
+
+/* ==========================================================================
+   1. الشريط العلوي المدمج (يختفي بسلاسة مع التحرك في الصفحة)
+   ========================================================================== */
+.topbar {
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--border-glass);
+  position: relative;
+  z-index: 100;
+}
+
+.topbar-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 8px 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: nowrap;
+}
+
+.topbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+  flex: 1 1 auto;
+  overflow: hidden;
+}
+
+.brand-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--emerald);
+  flex-shrink: 0;
+}
+
+.brand-title {
+  font-family: 'Inter', 'Cairo', sans-serif;
+  font-weight: 800;
+  font-size: 0.86rem;
+  direction: ltr;
+  white-space: nowrap;
+}
+
+.brand-sep {
+  color: var(--border-glass);
+  flex-shrink: 0;
+}
+
+.brand-dev {
+  font-weight: 800;
+  font-size: 0.82rem;
+  color: var(--gold);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.topbar-end {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.dua-pill {
+  background: var(--emerald-soft);
+  color: var(--emerald);
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 3px 9px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.icon-btn {
+  background: var(--bg-card-hover);
+  border: 1px solid var(--border-glass);
+  color: var(--text-main);
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+
+/* شريط التنقل للكمبيوتر فقط */
+.desktop-nav {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 12px 8px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+
+.main-nav-btn {
+  background: var(--bg-card-hover);
+  color: var(--text-2);
+  border: 1px solid var(--border-glass);
+  padding: 7px 10px;
+  border-radius: var(--radius-sm);
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.main-nav-btn.active {
+  background: var(--emerald);
+  color: #fff;
+  border-color: var(--emerald);
+}
+
+/* ==========================================================================
+   2. المحتوى الرئيسي وشريط الأجزاء والتبويبات المدمج
+   ========================================================================== */
+.main-wrapper {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 10px 10px 24px;
+}
+
+.section-view {
+  display: none;
+}
+
+.section-view.active {
+  display: block;
+}
+
+.compact-controls {
+  background: var(--bg-card);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-lg);
+  padding: 8px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* أزرار المحاضرات الـ 6 في شبكة منظمة (6 على الديسكتوب و 3×2 على الموبايل) */
+.parts-bar {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 5px;
+}
+
+.part-pill-btn {
+  background: var(--bg-card-hover);
+  color: var(--text-2);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-sm);
+  padding: 6px 4px;
+  font-family: inherit;
+  font-weight: 800;
+  font-size: 0.76rem;
+  cursor: pointer;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: all 0.15s ease;
+}
+
+.part-pill-btn.active {
+  background: var(--emerald);
+  color: #fff;
+  border-color: var(--emerald);
+}
+
+/* التبويبات الـ 3 الفرعية داخل الجزء */
+.sub-tabs-bar {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+  background: var(--bg-dark);
+  padding: 4px;
+  border-radius: var(--radius-sm);
+}
+
+.sub-tab-btn {
+  background: transparent;
+  color: var(--text-muted);
+  border: none;
+  border-radius: 6px;
+  padding: 6px 4px;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 0.77rem;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.sub-tab-btn.active {
+  background: var(--bg-card);
+  color: var(--emerald);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* شريط عنوان الجزء المختار */
+.active-part-strip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 10px;
+  padding: 0 4px;
+  flex-wrap: wrap;
+}
+
+.active-part-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  flex: 1;
+}
+
+.part-tag {
+  background: var(--emerald-soft);
+  color: var(--emerald);
+  font-size: 0.73rem;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: 6px;
+  flex-shrink: 0;
+}
+
+.part-heading {
+  font-size: 0.96rem;
+  font-weight: 800;
+  color: var(--text-main);
+  line-height: 1.35;
+}
+
+.pdf-mini-link {
+  background: var(--bg-card-hover);
+  border: 1px solid var(--border-gold);
+  color: var(--gold);
+  font-size: 0.74rem;
+  font-weight: 800;
+  padding: 3px 9px;
+  border-radius: 7px;
+  text-decoration: none;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* ==========================================================================
+   3. كروت الشرح والملخصات والجداول
+   ========================================================================== */
+.summary-box, .glass-panel {
+  background: var(--bg-card);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-lg);
+  padding: 13px;
+  margin-bottom: 10px;
+}
+
+.panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--border-glass);
+}
+
+.panel-title {
+  font-size: 0.96rem;
+  font-weight: 800;
+  color: var(--emerald);
+}
+
+.sub-section {
+  background: var(--bg-card);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-lg);
+  padding: 13px;
+  margin-bottom: 10px;
+}
+
+.sub-heading {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--emerald);
+  margin-bottom: 8px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid var(--border-glass);
+}
+
+.points-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 0.88rem;
+  color: var(--text-2);
+}
+
+.points-list li {
+  background: var(--bg-card-hover);
+  border: 1px solid var(--border-glass);
+  padding: 8px 11px;
+  border-radius: 8px;
+}
+
+.en-key {
+  font-family: 'Inter', 'Cairo', sans-serif;
+  color: var(--cyan);
+  font-weight: 700;
+  direction: ltr;
+  unicode-bidi: isolate;
+}
+
+.en-quote {
+  display: block;
+  font-family: 'Inter', sans-serif;
+  direction: ltr;
+  text-align: left;
+  color: var(--text-main);
+  font-weight: 600;
+  font-size: 0.85rem;
+  background: rgba(14, 165, 233, 0.08);
+  border-left: 3px solid var(--cyan);
+  padding: 6px 10px;
+  border-radius: 6px;
+  margin-bottom: 5px;
+}
+
+.sub-block-card {
+  background: rgba(14, 165, 233, 0.05);
+  border: 1px solid var(--border-glass);
+  border-right: 3px solid var(--gold);
+  border-radius: 10px;
+  padding: 11px;
+  margin-bottom: 9px;
+}
+
+.sub-block-title {
+  font-size: 0.91rem;
+  font-weight: 800;
+  color: var(--gold);
+  margin-bottom: 6px;
+}
+
+/* جداول المقارنة المتجاوبة */
+.table-wrap {
+  overflow-x: auto;
+  margin-top: 8px;
+  border-radius: 8px;
+  border: 1px solid var(--border-glass);
+}
+
+.cmp-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.82rem;
+}
+
+.cmp-table th {
+  background: rgba(16, 185, 129, 0.16);
+  color: var(--emerald);
+  font-weight: 800;
+  padding: 8px 9px;
+  border-bottom: 1px solid var(--border-glass);
+  text-align: center;
+}
+
+.cmp-table td {
+  padding: 7px 9px;
+  border-bottom: 1px solid var(--border-glass);
+  color: var(--text-2);
+  text-align: center;
+}
+
+.cmp-table tr:nth-child(even) td {
+  background: var(--bg-card-hover);
+}
+
+.cmp-table td:first-child {
+  font-weight: 800;
+  color: var(--gold);
+}
+
+/* ==========================================================================
+   4. الأزرار وكروت الأسئلة (دعم كامل للإنجليزي مع الشرح العربي)
+   ========================================================================== */
+.btn-primary, .btn-gold, .btn-outline {
+  padding: 7px 13px;
+  border-radius: 8px;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 0.83rem;
+  cursor: pointer;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  text-decoration: none;
+}
+
+.btn-gold {
+  background: var(--gold);
+  color: #fff;
+}
+
+.btn-primary {
+  background: var(--emerald);
+  color: #fff;
+}
+
+.btn-outline {
+  background: var(--bg-card-hover);
+  color: var(--text-main);
+  border: 1px solid var(--border-glass);
+}
+
+.controls-bar {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--bg-card);
+  border: 1px solid var(--border-glass);
+  padding: 10px 12px;
+  border-radius: var(--radius-md);
+  margin-bottom: 10px;
+}
+
+.search-input {
+  flex: 1;
+  min-width: 180px;
+  padding: 7px 11px;
+  border-radius: 8px;
+  border: 1px solid var(--border-glass);
+  background: var(--bg-card-hover);
+  color: var(--text-main);
+  font-family: inherit;
+  font-size: 0.85rem;
+}
+
+.filter-chips {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+.chip-btn {
+  background: var(--bg-card);
+  color: var(--text-2);
+  border: 1px solid var(--border-glass);
+  padding: 5px 10px;
+  border-radius: 999px;
+  font-family: inherit;
+  font-size: 0.76rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.chip-btn.active {
+  background: var(--emerald);
+  color: #fff;
+  border-color: var(--emerald);
+}
+
+.pdf-links-strip {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+.question-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-lg);
+  padding: 13px;
+  margin-bottom: 10px;
+}
+
+.question-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.q-num {
+  background: var(--emerald-soft);
+  color: var(--emerald);
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+}
+
+.q-badge-official {
+  background: rgba(245, 158, 11, 0.16);
+  color: var(--gold);
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-size: 0.73rem;
+}
+
+.q-text {
+  font-family: 'Inter', 'Cairo', sans-serif;
+  direction: ltr;
+  text-align: left;
+  font-size: 0.94rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  line-height: 1.5;
+  color: var(--text-main);
+}
+
+.options-list {
+  display: grid;
+  gap: 6px;
+  direction: ltr;
+}
+
+.option-btn {
+  width: 100%;
+  font-family: 'Inter', 'Cairo', sans-serif;
+  text-align: left;
+  direction: ltr;
+  padding: 9px 11px;
+  border-radius: 8px;
+  border: 1px solid var(--border-glass);
+  background: var(--bg-card-hover);
+  color: var(--text-main);
+  font-size: 0.87rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.option-btn.correct {
+  background: var(--emerald-soft) !important;
+  border-color: var(--emerald) !important;
+  color: var(--emerald) !important;
+  font-weight: 800;
+}
+
+.option-btn.wrong {
+  background: rgba(239, 68, 68, 0.15) !important;
+  border-color: var(--rose) !important;
+  color: var(--rose) !important;
+}
+
+.q-exp {
+  margin-top: 8px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  background: rgba(245, 158, 11, 0.12);
+  border-right: 3px solid var(--gold);
+  font-size: 0.84rem;
+  direction: rtl;
+  text-align: right;
+  display: none;
+}
+
+.q-exp.visible {
+  display: block;
+}
+
+/* ==========================================================================
+   5. البصمجة والفلاش كاردز والامتحان
+   ========================================================================== */
+.flashcard-container {
+  max-width: 600px;
+  margin: 0 auto 6px;
+  text-align: center;
+}
+
+.flashcard-box {
+  background: var(--bg-card-hover);
+  border: 1.5px solid var(--border-gold);
+  border-radius: 14px;
+  min-height: 155px;
+  padding: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.fc-hint {
+  font-size: 0.76rem;
+  color: var(--gold);
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.fc-content {
+  font-size: 1.02rem;
+  font-weight: 800;
+}
+
+.triggers-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(265px, 1fr));
+  gap: 8px;
+}
+
+.trigger-card {
+  background: var(--bg-card-hover);
+  border: 1px solid var(--border-glass);
+  border-right: 3px solid var(--gold);
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.trigger-tag {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 800;
+  padding: 1px 7px;
+  border-radius: 99px;
+  background: rgba(245, 158, 11, 0.16);
+  color: var(--gold);
+  margin-bottom: 4px;
+}
+
+.trigger-seen {
+  font-size: 0.84rem;
+  color: var(--text-muted);
+  margin-bottom: 5px;
+}
+
+.trigger-choose {
+  font-size: 0.87rem;
+  font-weight: 800;
+  color: var(--emerald);
+  background: var(--emerald-soft);
+  padding: 6px 9px;
+  border-radius: 7px;
+}
+
+.numbers-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(195px, 1fr));
+  gap: 8px;
+}
+
+.num-card {
+  background: var(--bg-card-hover);
+  border: 1px solid var(--border-glass);
+  border-radius: 10px;
+  padding: 10px;
+  text-align: center;
+}
+
+.num-val {
+  font-family: 'Inter', 'Cairo', sans-serif;
+  font-size: 1.08rem;
+  font-weight: 900;
+  color: var(--gold);
+  margin-bottom: 3px;
+}
+
+.num-label {
+  font-size: 0.8rem;
+  color: var(--text-2);
+}
+
+.trap-card {
+  background: var(--bg-card-hover);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  border-right: 4px solid var(--rose);
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 8px;
+}
+
+.trap-stmt {
+  font-family: 'Inter', 'Cairo', sans-serif;
+  direction: ltr;
+  text-align: left;
+  font-weight: 700;
+  font-size: 0.87rem;
+  margin-bottom: 5px;
+}
+
+.trap-ans {
+  display: inline-block;
+  background: rgba(239, 68, 68, 0.15);
+  color: var(--rose);
+  font-weight: 800;
+  padding: 1px 7px;
+  border-radius: 6px;
+  font-size: 0.76rem;
+  margin-bottom: 4px;
+}
+
+.trap-fix {
+  color: var(--emerald);
+  font-weight: 700;
+  font-size: 0.84rem;
+}
+
+.exam-top-bar {
+  position: sticky;
+  top: 6px;
+  z-index: 90;
+  background: var(--bg-card);
+  border: 1px solid var(--gold);
+  border-radius: 10px;
+  padding: 8px 12px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.timer-badge {
+  font-size: 0.95rem;
+  font-weight: 900;
+  color: var(--gold);
+  background: rgba(245, 158, 11, 0.14);
+  padding: 3px 9px;
+  border-radius: 8px;
+}
+
+.certificate-box {
+  background: var(--bg-card);
+  border: 2px solid var(--gold);
+  border-radius: 14px;
+  padding: 1.4rem;
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+/* ==========================================================================
+   6. شريط الموبايل السفلي واستجابة شاشة الهاتف
+   ========================================================================== */
+.mobile-dock {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .desktop-nav {
+    display: none;
+  }
+
+  .brand-title,
+  .brand-sep {
+    display: none;
+  }
+
+  .parts-bar {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .topbar-inner {
+    padding: 7px 10px;
+    gap: 8px;
+  }
+
+  .brand-dev {
+    font-size: 0.78rem;
+  }
+
+  .dua-pill {
+    font-size: 0.68rem;
+    padding: 3px 8px;
+  }
+
+  .mobile-dock {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 200;
+    background: var(--bg-card);
+    border-top: 1px solid var(--border-glass);
+    padding: 5px 6px calc(5px + env(safe-area-inset-bottom));
+    box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.35);
+  }
+
+  .dock-item {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    font-family: inherit;
+    padding: 5px 2px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1px;
+    cursor: pointer;
+  }
+
+  .dock-ic {
+    font-size: 1.1rem;
+  }
+
+  .dock-lbl {
+    font-size: 0.69rem;
+    font-weight: 700;
+  }
+
+  .dock-item.active {
+    color: var(--emerald);
+    background: var(--emerald-soft);
+  }
+}
+
+@media (max-width: 360px) {
+  .dua-pill {
+    font-size: 0.62rem;
+    padding: 2px 6px;
+  }
+  .brand-dev {
+    font-size: 0.73rem;
+  }
+  .part-pill-btn {
+    font-size: 0.72rem;
+  }
+}
